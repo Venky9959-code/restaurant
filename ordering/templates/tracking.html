@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="container py-5 mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1>
+
+            Track Your Order
+
+        </h1>
+
+        <h4>
+
+            Order #{{ order.id }}
+
+        </h4>
+
+    </div>
+
+    <div class="glass-card p-5">
+
+        <div class="progress mb-5" style="height:12px;">
+
+            <div id="trackerProgressBar" class="progress-bar bg-warning" style="width:
+{% if order.status == 'RECEIVED' %}
+25%
+{% elif order.status == 'PREPARING' %}
+50%
+{% elif order.status == 'READY' %}
+75%
+{% else %}
+100%
+{% endif %}
+">
+
+            </div>
+
+        </div>
+
+        <div class="row text-center">
+
+            <div class="col" id="status-col-RECEIVED" style="transition: all 0.4s ease;">
+
+                📦
+
+                <h5>
+
+                    Received
+
+                </h5>
+
+            </div>
+
+            <div class="col" id="status-col-PREPARING" style="transition: all 0.4s ease;">
+
+                👨‍🍳
+
+                <h5>
+
+                    Preparing
+
+                </h5>
+
+            </div>
+
+            <div class="col" id="status-col-READY" style="transition: all 0.4s ease;">
+
+                🍽️
+
+                <h5>
+
+                    Ready
+
+                </h5>
+
+            </div>
+
+            <div class="col" id="status-col-DELIVERED" style="transition: all 0.4s ease;">
+
+                ✅
+
+                <h5>
+
+                    Delivered
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h4>
+
+            Estimated Time
+
+            {{ order.estimated_time }}
+
+            Minutes
+
+        </h4>
+
+        <h5>
+
+            Current Status
+
+            <span class="badge bg-warning" id="statusBadge">
+
+                {{ order.get_status_display }}
+
+            </span>
+
+        </h5>
+
+    </div>
+
+</section>
+
+<script>
+    const orderId = "{{ order.id }}";
+
+    async function checkStatus() {
+        try {
+            const response = await fetch(`/orders/${orderId}/status/`);
+            const data = await response.json();
+            
+            // 1. Update Badge
+            const badge = document.getElementById("statusBadge");
+            if (badge) {
+                badge.innerText = data.status_display;
+            }
+            
+            // 2. Update Progress Bar
+            const progressBar = document.getElementById("trackerProgressBar");
+            if (progressBar) {
+                let width = "25%";
+                if (data.status === "PREPARING") width = "50%";
+                else if (data.status === "READY") width = "75%";
+                else if (data.status === "DELIVERED") width = "100%";
+                progressBar.style.width = width;
+            }
+            
+            // 3. Highlight active columns
+            const statuses = ["RECEIVED", "PREPARING", "READY", "DELIVERED"];
+            statuses.forEach(status => {
+                const col = document.getElementById(`status-col-${status}`);
+                if (col) {
+                    if (data.status === status) {
+                        col.classList.add("text-warning");
+                        col.style.transform = "scale(1.15)";
+                    } else {
+                        col.classList.remove("text-warning");
+                        col.style.transform = "scale(1.0)";
+                    }
+                }
+            });
+        } catch (e) {
+            console.error("Error fetching status:", e);
+        }
+    }
+
+    // Check status every 5 seconds
+    setInterval(checkStatus, 5000);
+    // Trigger instantly on page load
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", checkStatus);
+    } else {
+        checkStatus();
+    }
+</script>
+
+{% endblock %}

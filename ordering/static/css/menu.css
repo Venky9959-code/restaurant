@@ -1,0 +1,163 @@
+/*=====================================
+MENU SECTION
+=====================================*/
+
+.menu-section {
+
+    padding: 120px 0;
+
+    background: #0d1d2f;
+
+}
+
+.menu-filter {
+
+    margin-bottom: 40px;
+
+}
+
+.filter-btn {
+
+    padding: 14px 28px;
+
+    margin: 8px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: #132437;
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: .3s;
+
+}
+
+.filter-btn.active {
+
+    background: #ff7a00;
+
+}
+
+.filter-btn:hover {
+
+    background: #ff7a00;
+
+}
+
+.menu-card {
+
+    background: rgba(255, 255, 255, .05);
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    transition: .4s;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    height: 100%;
+
+}
+
+.menu-card:hover {
+
+    transform: translateY(-10px);
+
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .35);
+
+}
+
+.menu-image {
+
+    overflow: hidden;
+
+}
+
+.menu-image img {
+
+    width: 100%;
+
+    height: 230px;
+
+    object-fit: cover;
+
+    transition: .5s;
+
+}
+
+.menu-card:hover img {
+
+    transform: scale(1.08);
+
+}
+
+.menu-body {
+
+    padding: 22px;
+
+}
+
+.menu-body h4 {
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+
+}
+
+.menu-body p {
+
+    color: #bcc8d5;
+
+    min-height: 48px;
+
+}
+
+.menu-tags {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 20px 0;
+
+    font-weight: 600;
+
+}
+
+.menu-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #ff7a00, #ffb703);
+
+    font-weight: 700;
+
+    transition: .3s;
+
+}
+
+.menu-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 25px rgba(255, 122, 0, .3);
+
+}
+
+.hidden {
+
+    display: none !important;
+
+}

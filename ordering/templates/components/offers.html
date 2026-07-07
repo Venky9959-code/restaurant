@@ -1,0 +1,102 @@
+<section class="offer-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-badge">
+
+                Special Offers
+
+            </span>
+
+            <h2>
+
+                Today's Deals
+
+            </h2>
+
+            <p>
+
+                Grab our limited-time offers before they're gone.
+
+            </p>
+
+        </div>
+
+        <div class="row mt-5 g-4">
+
+            {% for offer in offers %}
+
+            <div class="col-lg-4">
+
+                <div class="offer-card">
+
+                    {% if offer.image %}
+                    <img src="{{ offer.image.url }}" alt="{{ offer.title }}">
+                    {% else %}
+                    <img src="/static/images/default-offer.jpg" alt="{{ offer.title }}">
+                    {% endif %}
+
+                    <div class="offer-overlay">
+
+                        <span class="discount">
+
+                            {{ offer.discount }}
+
+                        </span>
+
+                        <div class="mb-2">
+                            <span class="badge bg-danger">
+
+                                🔥 Limited Time Offer
+
+                            </span>
+
+                        </div>
+
+                        <h3>
+
+                            {{ offer.title }}
+
+                        </h3>
+
+                        <p>
+
+                            {{ offer.subtitle }}
+
+                        </p>
+
+                        <a href="#menu" class="offer-btn">
+
+                            <i class="bi bi-cart-fill"></i>
+
+                            {{ offer.button_text }}
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12 text-center">
+
+                <h4>
+
+                    No Offers Available
+
+                </h4>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>

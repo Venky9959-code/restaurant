@@ -1,0 +1,74 @@
+/*=====================================
+AUTH PAGES
+=====================================*/
+
+.glass-card {
+
+    background: rgba(255, 255, 255, .06);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .25);
+
+}
+
+.glass-card input {
+
+    background: rgba(255, 255, 255, .08);
+
+    border: 1px solid rgba(255, 255, 255, .1);
+
+    color: white;
+
+}
+
+.glass-card input:focus {
+
+    background: rgba(255, 255, 255, .12);
+
+    color: white;
+
+    border-color: #ffb703;
+
+    box-shadow: none;
+
+}
+
+.glass-card label {
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+}
+
+.glass-card img {
+
+    object-fit: cover;
+
+    border: 5px solid #ffb703;
+
+}
+
+.glass-card a {
+
+    text-decoration: none;
+
+}
+
+.auth-btn {
+    border: none;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #071320 !important;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 122, 0, 0.3);
+}

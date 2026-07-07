@@ -1,0 +1,182 @@
+<section class="menu-section" id="menu">
+
+    <div class="container">
+
+        <!-- Section Header -->
+
+        <div class="section-header text-center">
+
+            <span class="section-badge">
+
+                Complete Menu
+
+            </span>
+
+            <h2>
+
+                Explore Our Delicious Menu
+
+            </h2>
+
+            <p>
+
+                Every dish is freshly prepared using premium ingredients.
+
+            </p>
+
+        </div>
+
+        <!-- Filter Buttons -->
+
+        <div class="menu-filter text-center mt-5">
+
+            <button class="filter-btn active" onclick="filterMenu('all', this)">
+
+                All
+
+            </button>
+
+            {% for category in categories %}
+
+            <button class="filter-btn" onclick="filterMenu('{{ category.id }}', this)">
+
+                {{ category.name }}
+
+            </button>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- Menu Grid -->
+
+        <div class="row g-4 mt-4">
+
+            {% for item in menu_items %}
+
+            <div class="col-lg-3 col-md-6 menu-item" data-category="{{ item.category.id }}">
+
+                <div class="menu-card">
+
+                    <!-- Image -->
+
+                    <div class="menu-image">
+
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        {% else %}
+                        <img src="/static/images/no-food.png" alt="{{ item.name }}">
+                        {% endif %}
+
+                    </div>
+
+                    <!-- Body -->
+
+                    <div class="menu-body">
+
+                        <h4>
+
+                            {{ item.name }}
+
+                        </h4>
+                        <small class="text-warning">
+
+                            {{ item.category.name }}
+
+                        </small>
+
+                        <p>
+
+                            {{ item.description|truncatewords:10 }}
+
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+
+                            <span class="badge bg-warning text-dark">
+
+                                ⭐ {{ item.rating }}
+
+                            </span>
+
+                            <small class="text-muted">
+
+                                ⏱ {{ item.preparation_time }} Min
+
+                            </small>
+
+                        </div>
+
+                        <div class="menu-tags">
+
+                            {% if item.is_vegetarian %}
+
+                            <span class="veg-tag">
+
+                                🟢 Veg
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="nonveg-tag">
+
+                                🔴 Non Veg
+
+                            </span>
+
+                            {% endif %}
+
+                            <span>
+
+                                ₹{{ item.price }}
+
+                            </span>
+
+                        </div>
+
+                        {% if item.is_available %}
+
+                        <button class="menu-btn" onclick="addToCart(
+                            '{{ item.id }}',
+                            '{{ item.name }}',
+                            {{ item.price }},
+                            '{{ item.image.url }}'
+                            )">
+
+                            <i class="bi bi-cart-plus"></i>
+
+                            Add To Cart
+
+                        </button>
+
+                        {% else %}
+
+                        <button class="btn btn-secondary w-100" disabled>
+
+                            Out of Stock
+
+                        </button>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12 text-center">
+
+                <h4>No Menu Items Available</h4>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>

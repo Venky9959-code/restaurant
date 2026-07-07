@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5 mt-5">
+
+    <h1 class="mb-5">
+
+        Kitchen Dashboard
+
+    </h1>
+
+    <table class="table table-dark table-hover">
+
+        <thead>
+
+            <tr>
+
+                <th>
+
+                    Order
+
+                </th>
+
+                <th>
+
+                    Customer
+
+                </th>
+
+                <th>
+
+                    Items
+
+                </th>
+
+                <th>
+
+                    Status
+
+                </th>
+
+                <th>
+
+                    Payment
+
+                </th>
+
+                <th>
+
+                    Update
+
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for order in orders %}
+
+            <tr>
+
+                <td>
+
+                    #{{ order.id }}
+
+                </td>
+
+                <td>
+
+                    {{ order.customer_name }}
+
+                </td>
+
+                <td>
+
+                    <ul>
+
+                        {% for item in order.items.all %}
+
+                        <li>
+
+                            {{ item.quantity }}
+
+                            ×
+
+                            {{ item.menu_item.name }}
+
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </td>
+
+                <td>
+
+                    <span class="badge bg-warning">
+
+                        {{ order.get_status_display }}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span class="badge bg-secondary">
+                        {{ order.payment_method }}
+                    </span>
+                    <br>
+                    {% if order.payment_status == 'PAID' %}
+                    <span class="badge bg-success">
+                        Paid
+                    </span>
+                    {% else %}
+                    <span class="badge bg-danger">
+                        Pending
+                    </span>
+                    <form method="POST" class="d-inline ms-1">
+                        {% csrf_token %}
+                        <input type="hidden" name="order_id" value="{{ order.id }}">
+                        <input type="hidden" name="action" value="mark_paid">
+                        <button type="submit" class="btn btn-sm btn-success py-0 px-1" style="font-size: 11px;">
+                            Mark Paid
+                        </button>
+                    </form>
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="order_id" value="{{ order.id }}">
+
+                        <select class="form-select" name="status" onchange="this.form.submit()">
+
+                            {% for value,label in order.STATUS_CHOICES %}
+
+                            <option value="{{ value }}" {% if value == order.status %} selected {% endif %}>
+
+                                {{ label }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

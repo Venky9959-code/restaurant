@@ -1,0 +1,155 @@
+<section class="featured-section" id="featured">
+
+    <div class="container">
+
+        <!-- Heading -->
+
+        <div class="section-header text-center">
+
+            <span class="section-badge">
+                Chef's Recommendation
+            </span>
+
+            <h2>
+                Featured Dishes
+            </h2>
+
+            <p>
+                Hand-picked favorites prepared by our master chefs using premium ingredients.
+            </p>
+
+        </div>
+
+        <div class="row g-4 mt-5">
+
+            {% for item in featured_items %}
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="food-card">
+
+                    <!-- Image -->
+
+                    <div class="food-image">
+
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        {% else %}
+                        <img src="/static/images/no-food.png" alt="{{ item.name }}">
+                        {% endif %}
+
+                        <!-- Wishlist -->
+
+                        <button class="wishlist-btn" data-item-id="{{ item.id }}"
+                            onclick="toggleWishlist('{{ item.id }}', '{{ item.name }}')">
+
+                            <i class="bi bi-heart"></i>
+
+                        </button>
+
+                        <!-- Rating -->
+
+                        <div class="rating-tag">
+
+                            ⭐ {{ item.rating }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- Content -->
+
+                    <div class="food-content">
+
+                        <h4>
+
+                            {{ item.name }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ item.description|truncatewords:12 }}
+
+                        </p>
+
+                        <!-- Tags -->
+
+                        <div class="food-tags">
+
+                            {% if item.is_vegetarian %}
+
+                            <span class="veg-tag">
+
+                                🟢 Veg
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="nonveg-tag">
+
+                                🔴 Non-Veg
+
+                            </span>
+
+                            {% endif %}
+
+                            <span>
+
+                                ⏱ {{ item.preparation_time }} Min
+
+                            </span>
+
+                        </div>
+
+                        <!-- Footer -->
+
+                        <div class="food-footer">
+
+                            <h3>
+
+                                ₹{{ item.price }}
+
+                            </h3>
+
+                            <button class="add-cart-btn" onclick="addToCart(
+                                '{{ item.id }}',
+                                '{{ item.name }}',
+                                {{ item.price }},
+                                '{{ item.image.url }}'
+                                )">
+
+                                <i class="bi bi-cart-plus"></i>
+
+                                Add
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12 text-center">
+
+                <h5>
+
+                    No Featured Menu Available
+
+                </h5>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>

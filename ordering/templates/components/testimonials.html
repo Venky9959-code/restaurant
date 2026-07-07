@@ -1,0 +1,94 @@
+<section class="review-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-badge">
+                Customer Reviews
+            </span>
+
+            <h2>
+                What Our Customers Say
+            </h2>
+
+            <p>
+                Real reviews from happy customers.
+            </p>
+
+        </div>
+
+        <div class="row mt-5 g-4">
+
+            {% for review in reviews %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="review-card h-100">
+
+                    <!-- Customer Avatar -->
+
+                    <div class="text-center mb-3">
+
+                        <div class="avatar-circle">
+
+                            {{ review.customer_name|first|upper }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- Rating -->
+
+                    <div class="review-stars text-center mb-3">
+
+                        {% for i in "12345" %}
+                        {% if forloop.counter <= review.rating %} ⭐ {% else %} ☆ {% endif %} {% endfor %} </div>
+
+                            <!-- Review -->
+
+                            <p class="review-text">
+
+                                "{{ review.comment }}"
+
+                            </p>
+
+                            <hr>
+
+                            <!-- Customer -->
+
+                            <div class="text-center">
+
+                                <h5 class="mb-1">
+
+                                    {{ review.customer_name }}
+
+                                </h5>
+
+                                <small class="text-muted">
+
+                                    {{ review.created_at|date:"d M Y" }}
+
+                                </small>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <div class="col-12 text-center">
+
+                    <h4>No Reviews Yet</h4>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+</section>

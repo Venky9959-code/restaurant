@@ -1,0 +1,213 @@
+/*======================================
+FOOTER
+======================================*/
+
+.footer-section {
+
+    background: #06111d;
+
+    padding: 90px 0 30px;
+
+    border-top: 1px solid rgba(255, 255, 255, .08);
+
+}
+
+.footer-brand h3 {
+
+    margin-top: 18px;
+
+    font-weight: 700;
+
+}
+
+.footer-brand p {
+
+    margin-top: 20px;
+
+    line-height: 1.8;
+
+    color: #b7c2cf;
+
+}
+
+.footer-logo {
+
+    height: 70px;
+
+    width: 70px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 30px;
+
+    background: linear-gradient(135deg, #ff7a00, #ffb703);
+
+    color: #071320;
+
+}
+
+.footer-section h5 {
+
+    margin-bottom: 22px;
+
+    font-weight: 700;
+
+}
+
+.footer-links,
+
+.footer-contact {
+
+    padding: 0;
+
+    list-style: none;
+
+}
+
+.footer-links li,
+
+.footer-contact li {
+
+    margin-bottom: 15px;
+
+    color: #b7c2cf;
+
+}
+
+.footer-links a {
+
+    color: #b7c2cf;
+
+    text-decoration: none;
+
+    transition: .3s;
+
+}
+
+.footer-links a:hover {
+
+    color: #ffb703;
+
+    padding-left: 6px;
+
+}
+
+.footer-contact i {
+
+    color: #ffb703;
+
+    margin-right: 10px;
+
+}
+
+.social-links {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+}
+
+.social-links a {
+
+    height: 45px;
+
+    width: 45px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(255, 255, 255, .08);
+
+    color: white;
+
+    transition: .3s;
+
+    text-decoration: none;
+
+}
+
+.social-links a:hover {
+
+    background: #ff7a00;
+
+    transform: translateY(-5px);
+
+}
+
+.footer-divider {
+
+    margin: 50px 0 25px;
+
+    border-color: rgba(255, 255, 255, .08);
+
+}
+
+.footer-bottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.footer-bottom p {
+
+    margin: 0;
+
+    color: #b7c2cf;
+
+}
+
+.scroll-top {
+
+    height: 50px;
+
+    width: 50px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #ff7a00, #ffb703);
+
+    font-size: 20px;
+
+    transition: .3s;
+
+}
+
+.scroll-top:hover {
+
+    transform: translateY(-5px);
+
+}
+
+@media(max-width:768px) {
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+
+    }
+
+}

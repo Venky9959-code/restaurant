@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container py-5 mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="glass-card p-5">
+
+                <div class="text-center">
+
+                    {% if user.profile.profile_photo %}
+
+                    <img src="{{ user.profile.profile_photo.url }}" class="rounded-circle mb-4" width="160"
+                        height="160">
+
+                    {% else %}
+
+                    <i class="bi bi-person-circle display-1 text-warning"></i>
+
+                    {% endif %}
+
+                    <h2>
+
+                        {{ user.profile.full_name }}
+
+                    </h2>
+
+                    <p>
+
+                        {{ user.email }}
+
+                    </p>
+
+                    <p>
+
+                        📱 {{ user.profile.mobile_number }}
+
+                    </p>
+
+                </div>
+
+                <hr>
+
+                <div class="row text-center">
+
+                    <div class="col-md-4">
+
+                        <h3>
+
+                            {{ user.orders.count }}
+
+                        </h3>
+
+                        <p>
+
+                            Orders
+
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <h3 id="profileWishlistCount">
+
+                            {{ wishlist_count|default:0 }}
+
+                        </h3>
+
+                        <p>
+
+                            Wishlist
+
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <h3>
+
+                            {{ favorite_food|default:"-" }}
+
+                        </h3>
+
+                        <p>
+
+                            Favorite Food
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-5">
+
+                    <a href="{% url 'logout' %}" class="btn btn-danger">
+
+                        Logout
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

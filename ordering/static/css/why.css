@@ -1,0 +1,91 @@
+/*======================================
+WHY CHOOSE US
+======================================*/
+
+.why-section {
+
+    padding: 110px 0;
+
+    background: #081523;
+
+}
+
+.feature-card {
+
+    background: rgba(255, 255, 255, .05);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 25px;
+
+    padding: 40px 30px;
+
+    text-align: center;
+
+    transition: .4s;
+
+    height: 100%;
+
+    backdrop-filter: blur(15px);
+
+}
+
+.feature-card:hover {
+
+    transform: translateY(-12px);
+
+    background: linear-gradient(135deg, #ff7a00, #ffb703);
+
+    color: #071320;
+
+    box-shadow: 0 20px 45px rgba(255, 122, 0, .35);
+
+}
+
+.feature-icon {
+
+    height: 90px;
+
+    width: 90px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 40px;
+
+    background: rgba(255, 255, 255, .08);
+
+    margin-bottom: 25px;
+
+    transition: .4s;
+
+}
+
+.feature-card:hover .feature-icon {
+
+    background: white;
+
+    transform: rotate(15deg);
+
+}
+
+.feature-card h4 {
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+
+}
+
+.feature-card p {
+
+    line-height: 1.8;
+
+}

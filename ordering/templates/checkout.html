@@ -1,0 +1,753 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #fff8f0, #fff4e8, #fffdf8);
+        min-height: 100vh;
+    }
+
+    .checkout-card {
+        border-radius: 25px;
+        background: rgba(255, 255, 255, .85);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, .4);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, .08);
+        transition: .35s;
+    }
+
+    .checkout-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, .15);
+    }
+
+    .payment-card {
+
+        cursor: pointer;
+
+        border: 2px solid #ececec;
+
+        border-radius: 20px;
+
+        padding: 25px;
+
+        text-align: center;
+
+        transition: .35s;
+
+        background: white;
+
+        position: relative;
+
+        overflow: hidden;
+
+    }
+
+    .payment-card:hover {
+
+        transform: translateY(-6px);
+
+        box-shadow: 0 15px 35px rgba(0, 0, 0, .12);
+
+    }
+
+    .payment-card::before {
+
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        left: -120%;
+
+        width: 100%;
+
+        height: 100%;
+
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 193, 7, .25),
+                transparent);
+
+        transition: .8s;
+
+    }
+
+    .payment-card:hover::before {
+
+        left: 120%;
+
+    }
+
+    .active-payment {
+
+        border: 2px solid #ff9800;
+
+        background: #fff7ea;
+
+        box-shadow: 0 12px 30px rgba(255, 152, 0, .25);
+
+    }
+
+    .active-payment::after {
+
+        content: "✔";
+
+        position: absolute;
+
+        top: 12px;
+
+        right: 15px;
+
+        width: 32px;
+
+        height: 32px;
+
+        border-radius: 50%;
+
+        background: #28a745;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 15px;
+
+        font-weight: bold;
+
+    }
+
+    .form-control {
+
+        border-radius: 15px;
+
+        height: 55px;
+
+        border: 2px solid #ececec;
+
+        transition: .3s;
+
+    }
+
+    .form-control:focus {
+
+        border-color: #ff9800;
+
+        box-shadow: 0 0 0 .2rem rgba(255, 152, 0, .18);
+
+    }
+
+    #cartItems {
+
+        max-height: 320px;
+
+        overflow-y: auto;
+
+        padding-right: 5px;
+
+    }
+
+    .cart-item {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        padding: 12px 0;
+
+        border-bottom: 1px solid #eee;
+
+    }
+
+    .cart-item:last-child {
+
+        border-bottom: none;
+
+    }
+
+    .food-name {
+
+        font-weight: 600;
+
+    }
+
+    .food-qty {
+
+        color: #777;
+
+        font-size: 14px;
+
+    }
+
+    .food-price {
+
+        font-weight: bold;
+
+        color: #ff6b00;
+
+    }
+
+    #checkoutButton {
+
+        border-radius: 18px;
+
+        height: 60px;
+
+        font-size: 18px;
+
+        font-weight: 700;
+
+        letter-spacing: .5px;
+
+        background: linear-gradient(135deg,
+                #ff9800,
+                #ff6b00);
+
+        border: none;
+
+        color: white;
+
+        transition: .35s;
+
+    }
+
+    #checkoutButton:hover {
+
+        transform: translateY(-3px);
+
+        box-shadow: 0 15px 35px rgba(255, 152, 0, .35);
+
+    }
+
+    #checkoutButton:active {
+
+        transform: scale(.98);
+
+    }
+
+    .summary-box {
+
+        background: #fffaf2;
+
+        border-radius: 18px;
+
+        padding: 18px;
+
+    }
+
+    .section-title {
+
+        font-weight: 700;
+
+        margin-bottom: 18px;
+
+        color: #222;
+
+    }
+
+    .sticky-top {
+
+        top: 110px;
+
+    }
+
+    ::-webkit-scrollbar {
+
+        width: 7px;
+
+    }
+
+    ::-webkit-scrollbar-thumb {
+
+        background: #ffc107;
+
+        border-radius: 10px;
+
+    }
+
+    .badge-free {
+
+        background: #d4edda;
+
+        color: #198754;
+
+        padding: 5px 10px;
+
+        border-radius: 12px;
+
+        font-size: 12px;
+
+    }
+
+    .secure-box {
+
+        margin-top: 20px;
+
+        background: #f9fff7;
+
+        border: 1px solid #c7f1d2;
+
+        padding: 12px;
+
+        border-radius: 15px;
+
+        text-align: center;
+
+        color: #198754;
+
+        font-weight: 600;
+
+    }
+
+    @media(max-width:991px) {
+
+        .sticky-top {
+
+            position: relative !important;
+
+            top: 0;
+
+        }
+
+    }
+
+    @media(max-width:768px) {
+
+        .checkout-card {
+
+            margin-bottom: 20px;
+
+        }
+
+        #checkoutButton {
+
+            height: 55px;
+
+            font-size: 17px;
+
+        }
+
+        .payment-card {
+
+            margin-bottom: 15px;
+
+        }
+
+    }
+</style>
+
+
+<div class="container py-5 mt-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-5">
+            🍽️ Secure Checkout
+        </h1>
+
+        <p class="text-muted">
+            Review your order and complete your payment securely.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- ================= LEFT SIDE ================= -->
+
+        <div class="col-lg-7">
+
+            <div class="card shadow-lg border-0 rounded-4 checkout-card">
+
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4">
+                        👤 Customer Details
+                    </h3>
+
+                    <form id="checkoutForm">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Full Name
+                            </label>
+
+                            <input type="text" id="customerName" class="form-control form-control-lg"
+                                placeholder="Enter Full Name" value="{{ request.user.profile.full_name }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Mobile Number
+                            </label>
+
+                            <input type="text" id="customerPhone" class="form-control form-control-lg"
+                                placeholder="9876543210" value="{{ request.user.profile.mobile_number }}">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                Table Number (Optional)
+                            </label>
+
+                            <input type="number" id="tableNumber" class="form-control form-control-lg"
+                                placeholder="Example : 12">
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h3 class="fw-bold mb-4">
+                            💳 Payment Method
+                        </h3>
+
+                        <div class="row g-3">
+
+                            <!-- COD -->
+
+                            <div class="col-md-6">
+
+                                <div class="payment-card active-payment" data-method="COD"
+                                    onclick="selectPayment('COD')">
+
+                                    <div class="display-5 mb-2">
+                                        💵
+                                    </div>
+
+                                    <h5>Cash On Delivery</h5>
+
+                                    <small class="text-muted">
+                                        Pay after receiving food
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Razorpay -->
+
+                            <div class="col-md-6">
+
+                                <div class="payment-card" data-method="ONLINE" onclick="selectPayment('ONLINE')">
+
+                                    <div class="display-5 mb-2">
+                                        💳
+                                    </div>
+
+                                    <h5>Pay Online</h5>
+
+                                    <small class="text-muted">
+                                        Razorpay Secure Payment
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" id="paymentMethod" value="COD">
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= RIGHT SIDE ================= -->
+
+        <div class="col-lg-5">
+
+            <div class="card shadow-lg border-0 rounded-4 sticky-top checkout-card">
+
+                <div class="card-body p-4">
+
+                    <h3 class="fw-bold mb-4">
+                        🛒 Order Summary
+                    </h3>
+
+                    <div id="cartItems">
+
+                        <!-- JavaScript will load cart here -->
+
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span>Subtotal</span>
+
+                        <strong id="subtotal">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span>GST (5%)</span>
+
+                        <strong id="gst">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span>Delivery Charges</span>
+
+                        <strong class="text-success">
+                            FREE
+                        </strong>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between fs-4 fw-bold">
+
+                        <span>Total</span>
+
+                        <span id="grandTotal">
+                            ₹0
+                        </span>
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <button id="checkoutButton" class="btn btn-warning btn-lg w-100">
+
+                            🔒 Proceed to Payment
+
+                        </button>
+
+                    </div>
+
+                    <div class="text-center mt-3">
+
+                        <small class="text-muted">
+
+                            🔐 Secure payments powered by Razorpay
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    function selectPayment(method) {
+        document.querySelectorAll(".payment-card").forEach(card => {
+            card.classList.remove("active-payment");
+        });
+        const activeCard = document.querySelector(`[data-method="${method}"]`);
+        if (activeCard) {
+            activeCard.classList.add("active-payment");
+        }
+        document.getElementById("paymentMethod").value = method;
+        
+        const btn = document.getElementById("checkoutButton");
+        if (method === "ONLINE") {
+            btn.innerHTML = "🔒 Pay Online with Razorpay";
+        } else {
+            btn.innerHTML = "🔒 Place Cash On Delivery Order";
+        }
+    }
+
+    function renderCheckoutSummary() {
+        const cartItemsContainer = document.getElementById("cartItems");
+        const subtotalEl = document.getElementById("subtotal");
+        const gstEl = document.getElementById("gst");
+        const grandTotalEl = document.getElementById("grandTotal");
+
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = `<div class="text-center text-muted py-4">Your cart is empty.</div>`;
+            return;
+        }
+
+        let subtotal = 0;
+        cartItemsContainer.innerHTML = "";
+
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            cartItemsContainer.innerHTML += `
+                <div class="cart-item">
+                    <div>
+                        <span class="food-name">${item.name}</span>
+                        <br>
+                        <span class="food-qty">${item.quantity} x ₹${item.price}</span>
+                    </div>
+                    <span class="food-price">₹${itemTotal}</span>
+                </div>
+            `;
+        });
+
+        const gst = Math.round(subtotal * 0.05);
+        const total = subtotal + gst;
+
+        subtotalEl.innerText = `₹${subtotal}`;
+        gstEl.innerText = `₹${gst}`;
+        grandTotalEl.innerText = `₹${total}`;
+    }
+
+    async function performCheckout() {
+        const nameInput = document.getElementById("customerName");
+        const phoneInput = document.getElementById("customerPhone");
+        const name = nameInput ? nameInput.value.trim() : "";
+        const phone = phoneInput ? phoneInput.value.trim() : "";
+        const table = document.getElementById("tableNumber").value;
+        const payment_method = document.getElementById("paymentMethod").value;
+        
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        if (!name) {
+            alert("Please enter your name.");
+            return;
+        }
+        if (!phone) {
+            alert("Please enter your mobile number.");
+            return;
+        }
+
+        let subtotal = 0;
+        cart.forEach(item => {
+            subtotal += item.price * item.quantity;
+        });
+        const gst = Math.round(subtotal * 0.05);
+        const total = subtotal + gst;
+
+        if (payment_method === "ONLINE") {
+            try {
+                const response = await fetch("/create-payment/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": getCookie("csrftoken")
+                    },
+                    body: JSON.stringify({ amount: total })
+                });
+                const paymentData = await response.json();
+                if (!paymentData.success) {
+                    alert(paymentData.message || "Failed to initiate payment.");
+                    return;
+                }
+
+                var options = {
+                    "key": paymentData.key,
+                    "amount": paymentData.amount,
+                    "currency": paymentData.currency,
+                    "name": "DineFlow AI",
+                    "description": "Smart Restaurant Order",
+                    "order_id": paymentData.order_id,
+                    "handler": async function (paymentResponse) {
+                        const orderResponse = await fetch("/verify-payment/", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-CSRFToken": getCookie("csrftoken")
+                            },
+                            body: JSON.stringify({
+                                razorpay_order_id: paymentResponse.razorpay_order_id,
+                                razorpay_payment_id: paymentResponse.razorpay_payment_id,
+                                razorpay_signature: paymentResponse.razorpay_signature,
+                                customer: { name, phone, table, total, payment_method: "ONLINE" },
+                                cart
+                            })
+                        });
+                        const result = await orderResponse.json();
+                        if (result.success) {
+                            localStorage.removeItem("cart");
+                            window.location = "/success/" + result.order_id + "/";
+                        } else {
+                            alert("Payment verification failed: " + result.message);
+                        }
+                    },
+                    "prefill": {
+                        "name": name,
+                        "contact": phone
+                    },
+                    "theme": {
+                        "color": "#ff7a00"
+                    }
+                };
+                var rzp = new Razorpay(options);
+                rzp.open();
+            } catch (e) {
+                console.error(e);
+                alert("Error initiating Razorpay checkout.");
+            }
+        } else {
+            const response = await fetch("/place-order/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                body: JSON.stringify({
+                    customer: { name, phone, table, total, payment_method: "COD" },
+                    cart
+                })
+            });
+            const result = await response.json();
+            if (result.success) {
+                localStorage.removeItem("cart");
+                window.location = "/success/" + result.order_id + "/";
+            } else {
+                alert("Failed to place order: " + result.message);
+            }
+        }
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderCheckoutSummary();
+        const btn = document.getElementById("checkoutButton");
+        if (btn) {
+            btn.addEventListener("click", performCheckout);
+        }
+    });
+</script>
+
+{% endblock %}
