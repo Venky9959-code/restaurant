@@ -2,14 +2,10 @@
 
 set -o errexit
 
-echo "Installing dependencies..."
 pip install -r requirements.txt
 
-echo "Collecting static files..."
-python manage.py collectstatic --noinput
-
-echo "Running migrations..."
 python manage.py migrate
 
+python manage.py seed_menu
+
 python manage.py collectstatic --noinput
-echo "Build completed successfully!"
