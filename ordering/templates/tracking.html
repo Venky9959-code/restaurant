@@ -127,13 +127,13 @@
         try {
             const response = await fetch(`/orders/${orderId}/status/`);
             const data = await response.json();
-            
+
             // 1. Update Badge
             const badge = document.getElementById("statusBadge");
             if (badge) {
                 badge.innerText = data.status_display;
             }
-            
+
             // 2. Update Progress Bar
             const progressBar = document.getElementById("trackerProgressBar");
             if (progressBar) {
@@ -143,7 +143,7 @@
                 else if (data.status === "DELIVERED") width = "100%";
                 progressBar.style.width = width;
             }
-            
+
             // 3. Highlight active columns
             const statuses = ["RECEIVED", "PREPARING", "READY", "DELIVERED"];
             statuses.forEach(status => {
