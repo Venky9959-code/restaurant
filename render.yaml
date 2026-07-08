@@ -6,7 +6,7 @@ services:
 
     buildCommand: "./build.sh"
 
-    startCommand: "gunicorn restaurant.wsgi:application"
+    startCommand: "python manage.py migrate && python create_superuser.py && gunicorn restaurant.wsgi:application"
 
     envVars:
       - key: PYTHON_VERSION
