@@ -68,11 +68,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#footer">
-                        Contact
-                    </a>
-                </li>
 
             </ul>
 
@@ -86,7 +81,8 @@
 
                 </button>
 
-                <a class="icon-btn d-flex align-items-center justify-content-center" href="{% url 'profile' %}" style="text-decoration: none;">
+                <a class="icon-btn d-flex align-items-center justify-content-center" href="{% url 'profile' %}"
+                    style="text-decoration: none;">
 
                     <i class="bi bi-heart"></i>
 
@@ -108,7 +104,7 @@
 
                 {% if user.is_authenticated %}
 
-                <li class="nav-item dropdown">
+                <div class="nav-item dropdown">
 
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
 
@@ -118,7 +114,7 @@
 
                     </a>
 
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <div class="dropdown-menu dropdown-menu-end">
 
                         <li>
 
@@ -154,23 +150,23 @@
 
                         </li>
 
-                    </ul>
+                    </div>
 
-                </li>
+                </div>
 
                 {% else %}
 
-                <li class="nav-item">
+                <div class="nav-item">
 
-                    <a class="nav-link" href="{% url 'login' %}">
+                    <a class="btn btn-warning ms-2" href="{% url 'login' %}">
 
                         Login
 
                     </a>
 
-                </li>
+                </div>
 
-                <li class="nav-item">
+                <div class="nav-item">
 
                     <a class="btn btn-warning ms-2" href="{% url 'register' %}">
 
@@ -178,7 +174,7 @@
 
                     </a>
 
-                </li>
+                </div>
 
                 {% endif %}
 
