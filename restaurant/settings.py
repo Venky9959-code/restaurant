@@ -35,6 +35,11 @@ ALLOWED_HOSTS = [
     ".onrender.com",
 ]
 
+# Render sets RENDER_EXTERNAL_HOSTNAME automatically — add it to ALLOWED_HOSTS
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 # --------------------------------------------------
 # Applications
 # --------------------------------------------------
@@ -203,12 +208,17 @@ RAZORPAY_KEY_SECRET = os.getenv(
 
 if not DEBUG:
 
+    # Tell Django that the proxy (Render) forwards HTTPS as HTTP internally.
+    # This is required for CSRF, secure cookies, etc. to work correctly.
     SECURE_PROXY_SSL_HEADER = (
         "HTTP_X_FORWARDED_PROTO",
         "https",
     )
 
-    SECURE_SSL_REDIRECT = True
+    # Do NOT set SECURE_SSL_REDIRECT=True on Render — the proxy already handles
+    # HTTPS termination. Setting this causes an infinite redirect loop because
+    # Django sees internal HTTP traffic and keeps redirecting.
+    # SECURE_SSL_REDIRECT = True  # <-- Intentionally disabled for Render
 
     SESSION_COOKIE_SECURE = True
 

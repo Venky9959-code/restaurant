@@ -22,3 +22,9 @@ services:
         fromDatabase:
           name: dineflow-db
           property: connectionString
+
+databases:
+  - name: dineflow-db
+    plan: free
+    databaseName: dineflow
+    user: dineflow
