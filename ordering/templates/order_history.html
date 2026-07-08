@@ -95,7 +95,7 @@
                             id: '{{ item.menu_item.id }}',
                             name: '{{ item.menu_item.name|escapejs }}',
                             price: {{ item.price_at_order }},
-                            image: '{{ item.menu_item.image.url }}',
+                            image: '{{ item.menu_item.image_url }}',
                             quantity: {{ item.quantity }}
                         }{% if not forloop.last %},{% endif %}
                         {% endfor %}

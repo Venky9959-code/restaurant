@@ -36,7 +36,9 @@ class MenuItem(models.Model):
     )
 
     image = models.ImageField(
-        upload_to="foods/"
+        upload_to="foods/",
+        blank=True,
+        null=True,
     )
 
     is_vegetarian = models.BooleanField(default=False)
@@ -57,6 +59,16 @@ class MenuItem(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def image_url(self):
+        """Return image URL or a static placeholder if no image is set."""
+        if self.image and self.image.name:
+            try:
+                return self.image.url
+            except Exception:
+                pass
+        return "/static/images/no-food.png"
+
 
 class Offer(models.Model):
 
@@ -70,7 +82,9 @@ class Offer(models.Model):
     )
 
     image = models.ImageField(
-        upload_to="offers/"
+        upload_to="offers/",
+        blank=True,
+        null=True,
     )
 
     button_text = models.CharField(
@@ -85,8 +99,17 @@ class Offer(models.Model):
     )
 
     def __str__(self):
-
         return self.title
+
+    @property
+    def image_url(self):
+        """Return image URL or a static placeholder if no image is set."""
+        if self.image and self.image.name:
+            try:
+                return self.image.url
+            except Exception:
+                pass
+        return "/static/images/no-food.png"
 
 class Order(models.Model):
 

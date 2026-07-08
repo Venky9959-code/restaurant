@@ -10,7 +10,9 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load .env file for local development only.
+# override=False ensures Render's real env vars always take precedence.
+load_dotenv(override=False)
 
 # --------------------------------------------------
 # Base Directory
@@ -27,7 +29,7 @@ SECRET_KEY = os.environ.get(
     "django-insecure-local-development-key"
 )
 
-DEBUG = os.environ.get("DEBUG", "True") == "True"
+DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
