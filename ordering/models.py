@@ -61,13 +61,15 @@ class MenuItem(models.Model):
 
     @property
     def image_url(self):
-        """Return image URL or a static placeholder if no image is set."""
+        """Return image URL, falling back to static file served by WhiteNoise."""
         if self.image and self.image.name:
             try:
                 return self.image.url
             except Exception:
                 pass
-        return "/static/images/no-food.png"
+        # Fall back to the git-tracked static image (always available on Render)
+        static_name = self.name.replace(" ", "_") + ".jpg"
+        return f"/static/images/foods/{static_name}"
 
 
 class Offer(models.Model):

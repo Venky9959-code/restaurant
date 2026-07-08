@@ -62,11 +62,7 @@
 
                     <div class="menu-image">
 
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.name }}">
-                        {% else %}
-                        <img src="/static/images/no-food.png" alt="{{ item.name }}">
-                        {% endif %}
+                        <img src="{{ item.image_url }}" alt="{{ item.name }}">
 
                     </div>
 
