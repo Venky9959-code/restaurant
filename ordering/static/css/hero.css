@@ -12,7 +12,7 @@
     background:
         radial-gradient(circle at top right, rgba(255, 122, 0, .18), transparent 35%),
         radial-gradient(circle at bottom left, rgba(255, 183, 3, .12), transparent 35%),
-        linear-gradient(135deg, #ffffff, #f0f0f0);
+        linear-gradient(135deg, #071320, #0b1725);
 }
 
 /* Blur Background */

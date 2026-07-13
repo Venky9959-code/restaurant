@@ -36,6 +36,8 @@ CATEGORY SECTION
 
     margin-bottom: 20px;
 
+    color: #ffb703; /* brilliant theme yellow badge text */
+
 }
 
 .section-header h2 {
@@ -45,6 +47,8 @@ CATEGORY SECTION
     font-weight: 800;
 
     margin-bottom: 20px;
+
+    color: #ffffff; /* white section header */
 
 }
 

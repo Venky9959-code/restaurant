@@ -4,253 +4,150 @@
 
 <style>
     body {
-        background: linear-gradient(135deg, #fff8f0, #fff4e8, #fffdf8);
+        background: #071320;
+        color: #ffffff;
         min-height: 100vh;
     }
 
     .checkout-card {
         border-radius: 25px;
-        background: rgba(255, 255, 255, .85);
+        background: rgba(255, 255, 255, .05);
         backdrop-filter: blur(18px);
-        border: 1px solid rgba(255, 255, 255, .4);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, .08);
+        border: 1px solid rgba(255, 255, 255, .08);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
         transition: .35s;
+        color: #ffffff;
     }
 
     .checkout-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 30px 70px rgba(0, 0, 0, .15);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, .45);
     }
 
     .payment-card {
-
         cursor: pointer;
-
-        border: 2px solid #ececec;
-
+        border: 2px solid rgba(255, 255, 255, .1);
         border-radius: 20px;
-
         padding: 25px;
-
         text-align: center;
-
         transition: .35s;
-
-        background: white;
-
+        background: rgba(255, 255, 255, .02);
         position: relative;
-
         overflow: hidden;
-
+        color: #ffffff;
     }
 
     .payment-card:hover {
-
         transform: translateY(-6px);
-
-        box-shadow: 0 15px 35px rgba(0, 0, 0, .12);
-
+        box-shadow: 0 15px 35px rgba(0, 0, 0, .25);
     }
 
     .payment-card::before {
-
         content: "";
-
         position: absolute;
-
         top: 0;
-
         left: -120%;
-
         width: 100%;
-
         height: 100%;
-
         background: linear-gradient(90deg,
                 transparent,
-                rgba(255, 193, 7, .25),
+                rgba(255, 193, 7, .15),
                 transparent);
-
         transition: .8s;
-
     }
 
     .payment-card:hover::before {
-
         left: 120%;
-
     }
 
     .active-payment {
-
         border: 2px solid #ff9800;
-
-        background: #fff7ea;
-
-        box-shadow: 0 12px 30px rgba(255, 152, 0, .25);
-
-    }
-
-    .active-payment::after {
-
-        content: "✔";
-
-        position: absolute;
-
-        top: 12px;
-
-        right: 15px;
-
-        width: 32px;
-
-        height: 32px;
-
-        border-radius: 50%;
-
-        background: #28a745;
-
-        color: white;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        font-size: 15px;
-
-        font-weight: bold;
-
+        background: rgba(255, 152, 0, .1);
+        box-shadow: 0 12px 30px rgba(255, 152, 0, .15);
     }
 
     .form-control {
-
         border-radius: 15px;
-
         height: 55px;
-
-        border: 2px solid #ececec;
-
+        border: 2px solid rgba(255, 255, 255, .1);
+        background: rgba(255, 255, 255, .08);
+        color: #ffffff;
         transition: .3s;
-
     }
 
     .form-control:focus {
-
         border-color: #ff9800;
-
+        background: rgba(255, 255, 255, .12);
+        color: #ffffff;
         box-shadow: 0 0 0 .2rem rgba(255, 152, 0, .18);
-
     }
 
     #cartItems {
-
         max-height: 320px;
-
         overflow-y: auto;
-
         padding-right: 5px;
-
     }
 
     .cart-item {
-
         display: flex;
-
         justify-content: space-between;
-
         align-items: center;
-
         padding: 12px 0;
-
-        border-bottom: 1px solid #eee;
-
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
     }
 
     .cart-item:last-child {
-
         border-bottom: none;
-
     }
 
     .food-name {
-
         font-weight: 600;
-
+        color: #ffffff;
     }
 
     .food-qty {
-
-        color: #777;
-
+        color: #b6c2d0;
         font-size: 14px;
-
     }
 
     .food-price {
-
         font-weight: bold;
-
-        color: #ff6b00;
-
+        color: #ffb703;
     }
 
     #checkoutButton {
-
         border-radius: 18px;
-
         height: 60px;
-
         font-size: 18px;
-
         font-weight: 700;
-
         letter-spacing: .5px;
-
         background: linear-gradient(135deg,
                 #ff9800,
                 #ff6b00);
-
         border: none;
-
         color: white;
-
         transition: .35s;
-
     }
 
     #checkoutButton:hover {
-
         transform: translateY(-3px);
-
         box-shadow: 0 15px 35px rgba(255, 152, 0, .35);
-
     }
 
     #checkoutButton:active {
-
         transform: scale(.98);
-
     }
 
     .summary-box {
-
-        background: #fffaf2;
-
+        background: rgba(255, 255, 255, .03);
         border-radius: 18px;
-
         padding: 18px;
-
     }
 
     .section-title {
-
         font-weight: 700;
-
         margin-bottom: 18px;
-
-        color: #222;
-
+        color: #ffffff;
     }
 
     .sticky-top {

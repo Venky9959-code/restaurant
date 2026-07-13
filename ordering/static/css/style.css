@@ -45,13 +45,32 @@ body {
 
     --secondary: #ffb703;
 
-    --dark: #2c3e50;   /* dark text on light bg */
-    --dark2: #ecf0f1;  /* light card bg */
-    --bg: #f5f5f5;     /* page background */
-    --card: rgba(0,0,0,.03); /* subtle card shadow */
+    --dark: #ffffff;      /* light text for dark bg */
+    --dark2: #0b1725;     /* dark card bg */
+    --bg: #071320;        /* dark page background */
+    --card: rgba(255, 255, 255, .05); /* subtle white-border/glow shadow for cards */
     --text: #fff;
-    --gray: #c9d2dc;
+    --gray: #b6c2d0;
 
+}
+
+/* Global Heading Color */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+/* Bootstrap Card dark override */
+.card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(15px);
+    color: #ffffff !important;
+}
+.card h5, .card h4, .card h3, .card h2, .card h1, .card p, .card span, .card small, .card strong {
+    color: #ffffff !important;
+}
+.card .text-muted {
+    color: #b6c2d0 !important;
 }
 
 /*==============================
@@ -62,7 +81,7 @@ body {
 
     padding: 18px 0;
 
-    background: rgba(255,255,255,.55);
+    background: rgba(7, 19, 32, 0.85);
 
     backdrop-filter: blur(16px);
 
@@ -112,7 +131,7 @@ body {
 
 .nav-link {
 
-    color: #d8e2ec !important;
+    color: #b6c2d0 !important;
 
     margin: 0 12px;
 
