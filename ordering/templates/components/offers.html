@@ -1,3 +1,4 @@
+{% load static %}
 <section class="offer-section">
 
     <div class="container">
@@ -35,7 +36,7 @@
                     {% if offer.image %}
                     <img src="{{ offer.image.url }}" alt="{{ offer.title }}">
                     {% else %}
-                    <img src="/static/images/default-offer.jpg" alt="{{ offer.title }}">
+                    <img src="{% static 'images/default-offer.jpg' %}" alt="{{ offer.title }}">
                     {% endif %}
 
                     <div class="offer-overlay">

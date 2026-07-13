@@ -29,10 +29,8 @@ html {
 
 body {
 
-    background: #071320;
-
-    color: white;
-
+    background: var(--bg);
+    color: var(--dark);
     overflow-x: hidden;
 
 }
@@ -47,14 +45,11 @@ body {
 
     --secondary: #ffb703;
 
-    --dark: #071320;
-
-    --dark2: #0d1d2f;
-
-    --card: rgba(255, 255, 255, .06);
-
+    --dark: #2c3e50;   /* dark text on light bg */
+    --dark2: #ecf0f1;  /* light card bg */
+    --bg: #f5f5f5;     /* page background */
+    --card: rgba(0,0,0,.03); /* subtle card shadow */
     --text: #fff;
-
     --gray: #c9d2dc;
 
 }
@@ -67,7 +62,7 @@ body {
 
     padding: 18px 0;
 
-    background: rgba(7, 19, 32, .55);
+    background: rgba(255,255,255,.55);
 
     backdrop-filter: blur(16px);
 
