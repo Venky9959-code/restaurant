@@ -33,11 +33,7 @@
 
                 <div class="offer-card">
 
-                    {% if offer.image %}
-                    <img src="{{ offer.image.url }}" alt="{{ offer.title }}">
-                    {% else %}
-                    <img src="{% static 'images/default-offer.jpg' %}" alt="{{ offer.title }}">
-                    {% endif %}
+                    <img src="{{ offer.image_url }}" alt="{{ offer.title }}">
 
                     <div class="offer-overlay">
 

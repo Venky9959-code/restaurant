@@ -64,7 +64,8 @@ class MenuItem(models.Model):
         """Return image URL, falling back to static file served by WhiteNoise."""
         if self.image and self.image.name:
             try:
-                return self.image.url
+                if self.image.storage.exists(self.image.name):
+                    return self.image.url
             except Exception:
                 pass
         # Fall back to the git-tracked static image (always available on Render)
@@ -108,10 +109,11 @@ class Offer(models.Model):
         """Return image URL or a static placeholder if no image is set."""
         if self.image and self.image.name:
             try:
-                return self.image.url
+                if self.image.storage.exists(self.image.name):
+                    return self.image.url
             except Exception:
                 pass
-        return "/static/images/no-food.png"
+        return "/static/images/foods/Cheese_Burst_Pizza.jpg"
 
 class Order(models.Model):
 
